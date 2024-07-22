@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        let globalId=1;
+
+        function markAsDone(todoId){
+            const parent=document.getElementById(todoId);
+            parent.children[2].innerHTML="Done!"
+        }
+
+        function createChild(title,description,id){
+            const outerdiv = document.createElement("div");  //<div></div>
+    
+            const grandchild1=document.createElement("div");
+            grandchild1.innerHTML=title;
+            
+            const grandchild2=document.createElement("div");
+            grandchild2.innerHTML=description;
+
+            const grandchild3=document.createElement("button");
+            grandchild3.innerHTML="Mark a done";
+            grandchild3.setAttribute("onclick",`markAsDone(${id})`);
+
+            outerdiv.appendChild(grandchild1);
+            outerdiv.appendChild(grandchild2);
+            outerdiv.appendChild(grandchild3);
+            outerdiv.setAttribute("id",id);
+            return outerdiv; 
+        }
+
+
+
+
+        function addTodo() {
+            const title = document.getElementById("work").value;
+            const description = document.getElementById("des").value;
+            const parent=document.getElementById("container");
+            // const element=document.getElementById("container");
+            // element.innerHTML=("knksac"); or this
+            //   const element=document.getElementById("container").innerHTML;
+            //    document.getElementById("container").innerHTML=element+
+            //    `<div>
+            //    <p>tittle : ${title}</p>
+            //    <p>description : ${Description}</p>
+            //    <button>Mark as done </button>
+            //  </div>`;
+
+            //Using other functions and extra things above 
+    
+            parent.appendChild(createChild(title,description,globalId++));
+        }
+
+    </script>
+
+    <input id="work" type="text" placeholder="Name of work"><br><br>
+    <input id="des" type="text" placeholder="Description"><br><br>
+    <button onclick="addTodo()">Add to to do</button><br>
+    <div id="container">
+
+    </div>
+</body>
+
+</html>

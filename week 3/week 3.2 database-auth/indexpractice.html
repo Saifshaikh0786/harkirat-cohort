@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    //    function getAnimalData(){
+  //          alert("hi there")
+    //       fetch("https://fakerapi.it/api/v1/persons")
+      //     .then(function(response){
+        //    response.json()
+          //  .then(function(finalData){
+              //  console.log(finalData);
+            //})
+           //})
+            //}
+
+        //second method of writing this code and we have to write the code in this way from now 
+
+        //DOM
+        async function getAnimalData(){
+            const response=await fetch("https://fakerapi.it/api/v1/persons");
+            const finalData=await response.json()
+            console.log(finalData);
+            //if u want to see data on the webpage u can by 
+    document.getElementById("userData").innerHTML=JSON.stringify(finalData);
+
+        }
+           
+        // if you want to get data withouth clicking u can by -->
+        getAnimalData();
+    </script>
+    <div  id="userData"></div>
+
+    <button onclick="getAnimalData()">Get Animal data</button>
+</body>
+</html> 

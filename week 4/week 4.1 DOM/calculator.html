@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <script>
+        async function populateDiv(){
+          //  alert("Your calculation is successfully performed");
+
+            const a=document.getElementById("first-number").value;
+            const b=document.getElementById("second-number").value;
+            const url=("https://sum-server.100xdevs.com/sum?a=" + a +"&b=" + b);
+
+            const response=await fetch(url);
+            const sum=await response.text();
+            const element=document.getElementById("final-Sum");
+            element.innerHTML="<b>Final Sum</b> = "+sum;
+
+            
+         //other method
+       //     .then(function(response){
+         //       response.text()
+           //     .then(function(ans){
+             //       document.getElementById("final-Sum").innerHTML="<b>Final Sum </b>"+ ans;
+               // });
+            //});
+
+
+        //for front end logic
+         //   const element=document.getElementById("final-Sum");
+         //   const sum=parseInt(a)+parseInt(b);
+            //parseInt is used to convert string into integer
+          //  element.innerHTML="<b>Final Sum</b> = " +sum;
+        
+        }
+    </script>
+
+
+    <!-- if u want to get the sum withouth btn clng u can use onchange but use oninput -->
+    <input oninput="populateDiv()"    id="first-number" type="text" placeholder="first number"><br><br>
+    <input oninput="populateDiv()"    id="second-number" type="text" placeholder="second number"><br><br>
+    <button onclick="populateDiv()" id="btn">Calculate Sum</button>
+    <div id="final-Sum">final <span>Sum</span></div>
+</body>
+</html>

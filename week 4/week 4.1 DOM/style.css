@@ -1,0 +1,19 @@
+
+#final-Sum{
+    padding-top: 1rem;
+    font: 1em sans-serif;
+    color: red;
+    font-size: 1.5rem;
+}
+
+#final-Sum span{
+    color: aqua;
+}
+#btn{
+    background-color:aqua;
+    border-radius: 1rem;
+    font-family: cursive;
+    
+    
+
+}
