@@ -1,8 +1,10 @@
+import {lazy, Suspense} from 'react'
 import { useState } from 'react'
 import './App.css'
 import { BrowserRouter, Route ,Routes, useNavigate} from 'react-router-dom'
-import { Dashboard } from './componenets/Dashboard'
-import { Landing } from './componenets/Landing'
+
+const Dashboard= lazy(()=> import('./componenets/Dashboard'))
+const Landing= lazy(()=> import('./componenets/Landing'))
 
 
 function App() {
@@ -12,16 +14,14 @@ function App() {
     <BrowserRouter>
     <Appbar/>
     <Routes>
-       <Route path="/dashboard" element={<Dashboard/>}/>
-       <Route path="/" element={<Landing/>}/>
+      {/* there is an eroor like the page is getting vanised if we are switching from one page to another page */}
+       <Route path="/" element={<Suspense fallback={"Loading..."}><Landing/></Suspense>}/>
+       <Route path="/dashboard" element={<Suspense fallback={"Loading..."}><Dashboard/></Suspense>}/>
     </Routes>
 
   </BrowserRouter>
   </div>
-  )
-  
-  
-  
+  ) 
 }
 
 
@@ -35,7 +35,7 @@ function Appbar() {
     }}>Landing page</button> <br></br><br></br>
 
   <button onClick={() => {
-    navigate("/dashbord");
+    navigate("/Dashboard");
   }}>Dashboard</button><br></br><br></br>
 
 
