@@ -2,7 +2,7 @@
 import { CountContext } from './context'
 import './App.css'
 import { isRecoilValue, RecoilRoot, useRecoilState, useRecoilValue } from 'recoil'
-import { countAtom } from './store/atoms/count'
+import { countAtom, evenSelector } from './store/atoms/count'
 import { STATES } from 'mongoose'
 
 
@@ -11,6 +11,7 @@ import { STATES } from 'mongoose'
 // useRecoilState= it is similar to useState
 // useRecoilValue=it is use to have one value or [count => this part in use STATES]
 // usesetRecoilState=Returns a tuple where the first element is the value of state and the second element is a setter function that will update the value
+// [state,setstate]=for both of them  use recoilstate for just first one use recoilvalue for just second onr use recoilvalue
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
 }
 
 function Count(){
+  console.log("re-render");
   return <div>
     <CountRender/>
     <Buttons/>
@@ -34,8 +36,22 @@ function CountRender(){
   const count=useRecoilValue(countAtom);
   return <div>
     {count}
+  <EvenCountRender/>
   </div>
 }
+
+
+
+function EvenCountRender(){
+  const isEven=useRecoilValue(evenSelector);
+  return <div>
+    {(isEven)?"it is even":null}
+  </div>
+}
+
+
+
+
 
 function Buttons({}){
   const [count,setCount]=useRecoilState(countAtom)
